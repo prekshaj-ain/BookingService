@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, INTEGER
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Booking extends Model {
@@ -28,6 +28,16 @@ module.exports = (sequelize, DataTypes) => {
       values: ['InProcess', 'Booked', 'Cancelled'],
       defaultValue: 'InProcess',
     },
+    noOfSeats:{
+      type:DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+    },
+    totalCosts: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    }
   }, {
     sequelize,
     modelName: 'Booking',
