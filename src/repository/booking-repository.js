@@ -27,6 +27,9 @@ class BookingRepository {
       if(data.status){
         booking.status = data.status;
       }
+      if(data.noOfSeats){
+        booking.noOfSeats = data.noOfSeats;
+      }
       await booking.save();
       return booking;
     }catch(err){

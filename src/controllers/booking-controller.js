@@ -22,7 +22,26 @@ const create = async (req,res)=>{
     }
 }
 
+const update = async (req,res)=>{
+    try{
+        const response = await bookingService.update(req.params.id,{noOfSeats: req.body.noOfSeats});
+        return res.status(StatusCodes.OK).json({
+            data: response,
+            message: 'Successfully updated booking',
+            success: true,
+            error: {}
+        });
+    }catch(error){
+        return res.status(error.statusCode).json({
+            data: {},
+            message: error.message,
+            success: false,
+            error : error.explaination
+        })
+    }
+}
 
 module.exports = {
-    create
+    create,
+    update
 }
