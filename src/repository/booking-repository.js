@@ -21,8 +21,22 @@ class BookingRepository {
     }
   }
 
-  async update() {
-    
+  async update(bookingId, data) {
+    try{
+      const booking = await Booking.findByPk(bookingId);
+      if(data.status){
+        booking.status = data.status;
+      }
+      await booking.save();
+      return booking;
+    }catch(err){
+      throw new AppError(
+        "RepositoryError",
+        "Cannot update Booking",
+        "There is some issue in updating the booking, try again later",
+        StatusCodes.INTERNAL_SERVER_ERROR
+      );
+    }
   }
 }
 
