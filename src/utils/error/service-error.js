@@ -2,8 +2,8 @@ const { StatusCodes } = require("http-status-codes");
 
 class  ServiceError extends Error{
     constructor(
-        message,
-        explaination,
+        message = 'Something went wrong',
+        explaination = 'Service layer error',
         statusCodes = StatusCodes.INTERNAL_SERVER_ERROR
     ){
         this.name = 'ServiceError';
